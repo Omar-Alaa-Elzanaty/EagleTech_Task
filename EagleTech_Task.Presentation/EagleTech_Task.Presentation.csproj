@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EagleTech_Task.Infrastructure\EagleTech_Task.Infrastructure.csproj" />
+    <ProjectReference Include="..\EagleTech_Task.Presistance\EagleTech_Task.Presistance.csproj" />
+  </ItemGroup>
+
+</Project>
