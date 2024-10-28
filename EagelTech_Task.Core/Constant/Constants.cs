@@ -2,8 +2,8 @@
 {
     public sealed class Constants
     {
-        public string Admin = nameof(Admin);
-        public string Supplier = nameof(Supplier);
-        public string TechnicalSupport = nameof(TechnicalSupport);
+        public const string Admin = nameof(Admin);
+        public const string Supplier = nameof(Supplier);
+        public const string TechnicalSupport = nameof(TechnicalSupport);
     }
 }

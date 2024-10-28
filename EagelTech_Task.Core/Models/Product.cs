@@ -5,6 +5,6 @@
         public string Name { get; set; }
         public string BrandName { get; set; }
         public double Price { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDetail> Orders { get; set; }
     }
 }

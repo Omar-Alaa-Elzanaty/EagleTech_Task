@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EagleTech_Task.Application.Interfaces.Repository
 {
-    public interface IBaseRepo<T> where T : BaseEntity
+    public interface IBaseRepo<T> where T : class
     {
         Task AddAsync(T entity);
         Task AddRangeAsync(ICollection<T> entities);

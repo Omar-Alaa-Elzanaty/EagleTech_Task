@@ -31,7 +31,7 @@ namespace EagleTech_Task.Infrastructure.Services
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, authDto.UserId),
+                new Claim(ClaimTypes.NameIdentifier, authDto.UserId.ToString()),
                 new Claim(ClaimTypes.Name, authDto.UserName),
                 new Claim(ClaimTypes.Email,authDto.Email)
             };

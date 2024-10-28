@@ -14,7 +14,7 @@ namespace EagleTeck_Task.Shared
 
         public Result(HttpStatusCode statusCode = HttpStatusCode.OK) => StatusCode = statusCode;
 
-        public static Result<T>Success(T data,string message)
+        public static Result<T> Success(T data, string message)
         {
             return new Result<T>()
             {
@@ -23,8 +23,8 @@ namespace EagleTeck_Task.Shared
                 Message = message
             };
         }
-        
-        public static Result<T>Success(T data)
+
+        public static Result<T> Success(T data)
         {
             return new Result<T>()
             {
@@ -32,8 +32,8 @@ namespace EagleTeck_Task.Shared
                 Data = data
             };
         }
-        
-        public static Result<T>Success()
+
+        public static Result<T> Success()
         {
             return new Result<T>()
             {
@@ -48,8 +48,8 @@ namespace EagleTeck_Task.Shared
                 StatusCode = HttpStatusCode.BadRequest
             };
         }
-        
-        public static Result<T> Failure(T data,string message)
+
+        public static Result<T> Failure(T data, string message)
         {
             return new Result<T>
             {
@@ -58,7 +58,7 @@ namespace EagleTeck_Task.Shared
                 Message = message
             };
         }
-        
+
         public static Result<T> Failure(string message)
         {
             return new Result<T>
@@ -68,7 +68,16 @@ namespace EagleTeck_Task.Shared
             };
         }
 
-        public static Result<T>ValidationFailure(List<ValidationFailure> validationFailures,HttpStatusCode httpStatusCode)
+        public static Result<T> Failure(string message, HttpStatusCode statusCode)
+        {
+            return new Result<T>
+            {
+                StatusCode = statusCode,
+                Message = message
+            };
+        }
+
+        public static Result<T> ValidationFailure(List<ValidationFailure> validationFailures, HttpStatusCode httpStatusCode)
         {
             var errors = validationFailures.GetErrorDictionary();
 

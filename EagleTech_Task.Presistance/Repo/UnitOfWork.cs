@@ -21,7 +21,7 @@ namespace EagleTech_Task.Presistance.Repo
         }
 
 
-        public IBaseRepo<T> Repository<T>() where T : BaseEntity
+        public IBaseRepo<T> Repository<T>() where T : class
         {
             if (_repositories == null)
                 _repositories = new Hashtable();

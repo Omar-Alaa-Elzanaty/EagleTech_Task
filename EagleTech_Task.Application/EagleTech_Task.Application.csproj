@@ -13,14 +13,16 @@
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EagelTech_Task.Core\EagleTech_Task.Domain.csproj" />
+    <ProjectReference Include="..\EagleTeck_Task.Shared\EagleTeck_Task.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Authentication\" />
+    <Folder Include="Features\Authentication\Commands\" />
   </ItemGroup>
 
 </Project>

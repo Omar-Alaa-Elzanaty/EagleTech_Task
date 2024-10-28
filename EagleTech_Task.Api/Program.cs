@@ -2,6 +2,7 @@ using EagleTech_Task.Api;
 using EagleTech_Task.Application.Extensions;
 using EagleTech_Task.Infrastructure.Extenstions;
 using EagleTech_Task.Presistance.Extensions;
+using EagleTech_Task.Presistance.Seeding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,5 +42,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+DataSeeding.Initialize(app.Services.CreateScope().ServiceProvider);
 
 app.Run();

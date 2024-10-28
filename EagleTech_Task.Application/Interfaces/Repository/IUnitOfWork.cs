@@ -10,6 +10,6 @@ namespace EagleTech_Task.Application.Interfaces.Repository
     public interface IUnitOfWork
     {
         Task<int> SaveAsync(CancellationToken cancellationToken);
-        IBaseRepo<T> Repository<T>() where T: BaseEntity;
+        IBaseRepo<T> Repository<T>() where T: class;
     }
 }
