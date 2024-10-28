@@ -1,5 +1,6 @@
 ﻿using EagleTech_Task.Application.Features.Orders.Commands.Create;
 using EagleTech_Task.Application.Features.Orders.Queries.GetOrdersByCustomerId;
+using EagleTech_Task.Application.Features.Orders.Queries.GetOrdersTotal;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,6 +32,10 @@ namespace EagleTech_Task.Presentation.Endpoints
             return Ok(await _mediator.Send(new GetOrdersByCustomerIdQuery(customerId)));
         }
 
-
+        [HttpGet("getTotalOrders")]
+        public async Task<ActionResult<GetOrdersTotalQueryDto>> GetTotalOrders()
+        {
+            return Ok(await _mediator.Send(new GetOrdersTotalQuery()));
+        }
     }
 }
