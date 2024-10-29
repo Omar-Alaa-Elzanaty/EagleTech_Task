@@ -26,7 +26,7 @@ namespace EagleTech_Task.Presentation.Endpoints
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginationResult<GetAllCustomersQueryDto>>> GetAll(GetAllCustomersQuery query)
+        public async Task<ActionResult<PaginationResult<GetAllCustomersQueryDto>>> GetAll([FromQuery] GetAllCustomersQuery query)
         {
             return Ok(await _mediator.Send(query));
         }

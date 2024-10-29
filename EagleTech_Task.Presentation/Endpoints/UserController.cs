@@ -1,4 +1,8 @@
-﻿using EagleTech_Task.Application.Features.Users.Commands.Create;
+﻿using EagleTech_Task.Application.Features.Roles.Queries.GetAll;
+using EagleTech_Task.Application.Features.Users.Commands.Create;
+using EagleTech_Task.Application.Features.Users.Queries.GetAll;
+using EagleTech_Task.Application.Features.Users.Queries.GetManagerUser;
+using EagleTech_Task.Application.Features.Users.Queries.GetSubOrdinates;
 using EagleTech_Task.Domain.Constant;
 using EagleTeck_Task.Shared;
 using MediatR;
@@ -24,15 +28,27 @@ namespace EagleTech_Task.Presentation.Endpoints
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult<Result<List<GetAllUsersQueryDto>>>> GetAll()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new GetAllUsersQuery()));
         }
 
         [HttpGet("{id}/subOrdinates")]
-        public async Task<ActionResult>GetSubOrdinates(Guid id)
+        public async Task<ActionResult<Result<List<GetSubOrdinatesQueryDto>>>>GetSubOrdinates(Guid id)
         {
-            return Ok();
+            return Ok(await _mediator.Send(new GetSubOrdinatesQuery(id)));
+        }
+
+        [HttpGet("managerUsers")]
+        public async Task<ActionResult<Result<List<GetManagerUserQueryDto>>>> GetManagerUsers()
+        {
+            return Ok(await _mediator.Send(new GetManagerUserQuery()));
+        }
+
+        [HttpGet("roles")]
+        public async Task<ActionResult<Result<List<GetAllRolesQueryDto>>>> GetRoles()
+        {
+            return Ok(await _mediator.Send(new GetAllRolesQuery()));
         }
     }
 }

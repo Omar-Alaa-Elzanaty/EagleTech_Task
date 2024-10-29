@@ -16,7 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
   </ItemGroup>
 	<ItemGroup>
-		<InternalsVisibleTo Include="EagleTech_Task.UnitTest"/>
+		<InternalsVisibleTo Include="EagleTech_Task.UnitTest" />
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EagelTech_Task.Core\EagleTech_Task.Domain.csproj" />

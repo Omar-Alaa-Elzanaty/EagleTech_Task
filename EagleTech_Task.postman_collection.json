@@ -1,0 +1,528 @@
+{
+	"info": {
+		"_postman_id": "083e17d1-f78a-4709-81a5-1108131bac84",
+		"name": "EagleTech_Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31188439"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/Auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Auth",
+								"login"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7113/api/Auth/login' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\"\r\n}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/Customer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Customer"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7113/api/Customer' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\"\r\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "topFiveCustomers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/Customer/topFiveCustomers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Customer",
+								"topFiveCustomers"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/Customer/topFiveCustomers' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				},
+				{
+					"name": "Customer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pageSize\": 0,\r\n  \"pageNumber\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/Customer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Customer"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/Customer' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"pageSize\": 0,\r\n  \"pageNumber\": 0\r\n}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"quantity\": 0\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/Order",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Order"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7113/api/Order' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"customerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"quantity\": 0\r\n    }\r\n  ]\r\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/Order",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Order"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'PUT' \\\r\n  'https://localhost:7113/api/Order' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": 0\r\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "/Order/{customerId}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/Order/B5729023-935E-4833-0D27-08DCF84442CF",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Order",
+								"B5729023-935E-4833-0D27-08DCF84442CF"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/Order/B5729023-935E-4833-0D27-08DCF84442CF' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				},
+				{
+					"name": "getTotalOrders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/Order/getTotalOrders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Order",
+								"getTotalOrders"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/Order/getTotalOrders' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/Product",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Product"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/Product' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"brandName\": \"string\",\r\n  \"price\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/Product",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"Product"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7113/api/Product' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"name\": \"string\",\r\n  \"brandName\": \"string\",\r\n  \"price\": 0\r\n}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "createAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\",\r\n  \"roleId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"managerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7113/api/User/createAccount",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"User",
+								"createAccount"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7113/api/User/createAccount' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\",\r\n  \"roleId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"managerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/User",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"User"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/User' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User subOrdinates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/User/B5729023-935E-4833-0D27-08DCF84442CF/subOrdinates",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"User",
+								"B5729023-935E-4833-0D27-08DCF84442CF",
+								"subOrdinates"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/User/B5729023-935E-4833-0D27-08DCF84442CF/subOrdinates' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				},
+				{
+					"name": "managerUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/User/managerUsers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"User",
+								"managerUsers"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/User/managerUsers' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7113/api/User/roles",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7113",
+							"path": [
+								"api",
+								"User",
+								"roles"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7113/api/User/roles' \\\r\n  -H 'accept: text/plain'"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
