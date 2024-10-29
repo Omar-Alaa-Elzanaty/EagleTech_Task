@@ -23,7 +23,7 @@ namespace EagleTech_Task.Presentation.Endpoints
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult> GetAll()
         {
             return Ok();

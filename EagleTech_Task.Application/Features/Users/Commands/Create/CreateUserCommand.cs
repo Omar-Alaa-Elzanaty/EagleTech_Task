@@ -10,24 +10,24 @@ using System.Net;
 
 namespace EagleTech_Task.Application.Features.Users.Commands.Create
 {
-    public record CreateUserCommand : IRequest<Result<string>>
+    public record CreateUserCommand : IRequest<Result<Guid>>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string RoleId { get; set; }
-        public string? ManagerId { get; set; }
+        public Guid RoleId { get; set; }
+        public Guid? ManagerId { get; set; }
     }
 
-    internal class RegisterCommandHandler : IRequestHandler<CreateUserCommand, Result<string>>
+    internal class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result<Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAuthServices _authServices;
         private readonly IValidator<CreateUserCommand> _validator;
 
-        public RegisterCommandHandler(
+        public CreateUserCommandHandler(
             IUnitOfWork unitOfWork,
             IValidator<CreateUserCommand> validator,
             IAuthServices authServices)
@@ -37,20 +37,20 @@ namespace EagleTech_Task.Application.Features.Users.Commands.Create
             _authServices = authServices;
         }
 
-        public async Task<Result<string>> Handle(CreateUserCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(command, cancellationToken);
 
             if (!validationResult.IsValid)
             {
-                return Result<string>.ValidationFailure(validationResult.Errors, HttpStatusCode.UnprocessableEntity);
+                return Result<Guid>.ValidationFailure(validationResult.Errors, HttpStatusCode.UnprocessableEntity);
             }
 
-            var role = await _unitOfWork.Repository<Role>().Entities.SingleOrDefaultAsync(x => x.Id.ToString() == command.RoleId);
+            var role = await _unitOfWork.Repository<Role>().Entities.SingleOrDefaultAsync(x => x.Id == command.RoleId);
 
             if (role == null)
             {
-                return Result<string>.Failure("Role not found.");
+                return Result<Guid>.Failure("Role not found.");
             }
 
             var userCheck = await CheckUserExist(command);
@@ -74,10 +74,10 @@ namespace EagleTech_Task.Application.Features.Users.Commands.Create
             _unitOfWork.Repository<User>().Update(user);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            return Result<string>.Success(user.Id.ToString());
+            return Result<Guid>.Success(user.Id);
         }
 
-        private async Task<Result<string>> CheckUserExist(CreateUserCommand command)
+        private async Task<Result<Guid>> CheckUserExist(CreateUserCommand command)
         {
             var entity = _unitOfWork.Repository<User>().Entities;
 
@@ -91,9 +91,9 @@ namespace EagleTech_Task.Application.Features.Users.Commands.Create
                 return ReturnReasonFail("Email already exist.");
             }
 
-            return Result<string>.Success();
+            return Result<Guid>.Success();
         }
 
-        private static Result<string> ReturnReasonFail(string reason) => Result<string>.Failure(reason);
+        private static Result<Guid> ReturnReasonFail(string reason) => Result<Guid>.Failure(reason);
     }
 }

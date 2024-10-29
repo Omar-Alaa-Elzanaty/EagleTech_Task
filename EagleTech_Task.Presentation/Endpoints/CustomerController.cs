@@ -1,18 +1,16 @@
 ﻿using EagleTech_Task.Application.Features.Customers.Commands.Create;
 using EagleTech_Task.Application.Features.Customers.Queries.GetAllCustomers;
 using EagleTech_Task.Application.Features.Customers.Queries.GetTopFiveCustomers;
+using EagleTech_Task.Domain.Constant;
 using EagleTeck_Task.Shared;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EagleTech_Task.Presentation.Endpoints
 {
-    public class CustomerController:ApiControllerBase
+    [Authorize(Roles = Constants.Admin)]
+    public class CustomerController : ApiControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -28,7 +26,7 @@ namespace EagleTech_Task.Presentation.Endpoints
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginationResult<GetAllCustomersQueryDto>>>GetAll(GetAllCustomersQuery query)
+        public async Task<ActionResult<PaginationResult<GetAllCustomersQueryDto>>> GetAll(GetAllCustomersQuery query)
         {
             return Ok(await _mediator.Send(query));
         }

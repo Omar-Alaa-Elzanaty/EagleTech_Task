@@ -1,4 +1,5 @@
 ﻿using EagleTech_Task.Application.Interfaces.Repository;
+using EagleTech_Task.Domain.Constant;
 using EagleTech_Task.Domain.Models;
 using EagleTeck_Task.Shared;
 using Mapster;
@@ -45,11 +46,12 @@ namespace EagleTech_Task.Application.Features.Orders.Commands.Create
                 }
 
             var order = command.Adapt<Order>();
+            order.Status = OrderStatus.UnderConfirm;
 
             await _unitOfWork.Repository<Order>().AddAsync(order);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            order.Details.AddRange(command.Items.Adapt<List<OrderDetail>>());
+            order.Details = command.Items.Adapt<List<OrderDetail>>();
 
             _unitOfWork.Repository<Order>().Update(order);
             await _unitOfWork.SaveAsync(cancellationToken);

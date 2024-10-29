@@ -15,7 +15,7 @@ namespace EagleTech_Task.Application.Interfaces.Repository
         void UpdateRange(ICollection<T> entities);
         void Delete(T entity);
         void DeleteRange(ICollection<T> entities);
-        Task<T?> GetByIdAsync(string id);
+        Task<T?> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
         IQueryable<T> Entities { get; }
     }

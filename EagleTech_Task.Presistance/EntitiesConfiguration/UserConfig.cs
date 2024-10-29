@@ -12,6 +12,9 @@ namespace EagleTech_Task.Presistance.EntitiesConfiguration
                 .WithMany()
                 .HasForeignKey(x => x.ManagerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasIndex(x => x.Email);
+            builder.HasIndex(x => x.UserName);
         }
     }
 }

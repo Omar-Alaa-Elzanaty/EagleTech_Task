@@ -1,16 +1,14 @@
 ﻿using EagleTech_Task.Application.Features.Products.Commands.Create;
 using EagleTech_Task.Application.Features.Products.Queries.GetAllProducts;
+using EagleTech_Task.Domain.Constant;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EagleTech_Task.Presentation.Endpoints
 {
-    public class ProductController:ApiControllerBase
+    [Authorize(Roles = $"{Constants.Admin},{Constants.Supplier}")]
+    public class ProductController : ApiControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -20,6 +18,7 @@ namespace EagleTech_Task.Presentation.Endpoints
         }
 
         [HttpPost]
+        [Authorize(Roles = Constants.Supplier)]
         public async Task<ActionResult<Guid>> Create(CreateProductCommand command)
         {
             return Ok(await _mediator.Send(command));

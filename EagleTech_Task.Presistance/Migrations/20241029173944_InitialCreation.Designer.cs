@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EagleTech_Task.Presistance.Migrations
 {
     [DbContext(typeof(OrderMangmentDbContext))]
-    [Migration("20241028061904_InitialCreation")]
+    [Migration("20241029173944_InitialCreation")]
     partial class InitialCreation
     {
         /// <inheritdoc />
@@ -59,8 +59,11 @@ namespace EagleTech_Task.Presistance.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("CustomerId")
+                    b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
 
                     b.Property<float>("TotalCost")
                         .HasColumnType("real");
@@ -70,6 +73,24 @@ namespace EagleTech_Task.Presistance.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("EagleTech_Task.Domain.Models.OrderDetail", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("EagleTech_Task.Domain.Models.Product", b =>
@@ -89,8 +110,8 @@ namespace EagleTech_Task.Presistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -126,7 +147,7 @@ namespace EagleTech_Task.Presistance.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -149,28 +170,17 @@ namespace EagleTech_Task.Presistance.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email");
+
                     b.HasIndex("ManagerId");
 
+                    b.HasIndex("UserName");
+
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<Guid>("OrdersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("OrdersId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("RoleUser", b =>
@@ -190,9 +200,32 @@ namespace EagleTech_Task.Presistance.Migrations
 
             modelBuilder.Entity("EagleTech_Task.Domain.Models.Order", b =>
                 {
-                    b.HasOne("EagleTech_Task.Domain.Models.Customer", null)
+                    b.HasOne("EagleTech_Task.Domain.Models.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("EagleTech_Task.Domain.Models.OrderDetail", b =>
+                {
+                    b.HasOne("EagleTech_Task.Domain.Models.Order", "Order")
+                        .WithMany("Details")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EagleTech_Task.Domain.Models.Product", "Product")
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("EagleTech_Task.Domain.Models.User", b =>
@@ -203,21 +236,6 @@ namespace EagleTech_Task.Presistance.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manager");
-                });
-
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.HasOne("EagleTech_Task.Domain.Models.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EagleTech_Task.Domain.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("RoleUser", b =>
@@ -236,6 +254,16 @@ namespace EagleTech_Task.Presistance.Migrations
                 });
 
             modelBuilder.Entity("EagleTech_Task.Domain.Models.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("EagleTech_Task.Domain.Models.Order", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("EagleTech_Task.Domain.Models.Product", b =>
                 {
                     b.Navigation("Orders");
                 });
